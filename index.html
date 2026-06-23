@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Cafe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+    <div class="modal-box login-modal-box">
+        <div class="modal-header">
+            <h2>🔐 Admin Login</h2>
+            <button class="close-x" id="closeBtn">✕</button>
+        </div>
+        <div class="input-group">
+            <label>อีเมล Admin</label>
+            <input type="email" id="email" placeholder="admin@example.com">
+        </div>
+        <div class="input-group">
+            <label>รหัสผ่าน</label>
+            <input type="password" id="adminPass" placeholder="••••••••">
+        </div>
+        <button id="loginBtn">เข้าสู่ระบบ</button>
+        <p id="msg"></p>
+    </div>
+</div>
+
+<!-- ADMIN PANEL MODAL -->
+<div id="adminModal" class="modal">
+    <div class="modal-box admin-modal-box">
+        <div class="modal-header">
+            <h2>⚙️ Admin Panel</h2>
+            <button class="close-x" id="closeAdminBtn">✕</button>
+        </div>
+        <p id="admin-msg"></p>
+
+        <div class="admin-section">
+            <h3>➕ เพิ่ม VIP ใหม่</h3>
+            <div class="input-group">
+                <label>ชื่อผู้เล่น</label>
+                <input type="text" id="vipName" placeholder="กรอกชื่อ">
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>จำนวนวัน</label>
+                    <input type="number" id="vipDays" placeholder="0" min="1">
+                </div>
+                <div class="input-group">
+                    <label>หมายเหตุ</label>
+                    <input type="text" id="vipNote" placeholder="-">
+                </div>
+            </div>
+            <button id="addVipBtn" class="btn-green">➕ เพิ่ม VIP</button>
+        </div>
+
+        <div class="admin-footer">
+            <button id="logoutBtn" class="btn-logout">🚪 ออกจากระบบ</button>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE CONFIRM POPUP -->
+<div id="deletePopup" class="add-days-popup">
+    <div class="popup-box delete-popup-box">
+        <div class="delete-icon">🗑</div>
+        <h3>ยืนยันการลบ</h3>
+        <p class="delete-popup-name">ลบ "<span id="delete-name-text"></span>" ออกจาก VIP?</p>
+        <p class="delete-warning">การกระทำนี้ไม่สามารถย้อนกลับได้</p>
+        <div class="delete-actions">
+            <button class="popup-cancel" id="delete-cancel">ยกเลิก</button>
+            <button class="btn-delete-confirm" id="delete-confirm">🗑 ลบออก</button>
+        </div>
+    </div>
+</div>
+
+<!-- ADD DAYS POPUP -->
+<div id="addDaysPopup" class="add-days-popup">
+    <div class="popup-box">
+        <h3>➕ เพิ่มวัน VIP</h3>
+        <p id="popup-name" style="color:#aaa;font-size:0.85rem;"></p>
+        <input type="number" id="popup-days" placeholder="จำนวนวันที่ต้องการเพิ่ม" min="1">
+        <button class="popup-confirm" id="popup-confirm">ยืนยัน</button>
+        <button class="popup-cancel" id="popup-cancel">ยกเลิก</button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+    <header>
+        <div>
+            <h1>CENTRAL CAFE</h1>
+            <p class="subtitle">Premium Member System</p>
+        </div>
+        <div class="header-actions">
+            <button class="admin-btn" id="openAdminBtn" style="display:none;">⚙️ Admin Panel</button>
+            <button class="admin-btn" id="openModalBtn">🔐 Admin Login</button>
+        </div>
+    </header>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active" data-tab="vip">👑 VIP</button>
+        <button class="tab" data-tab="history">📋 ประวัติ</button>
+    </div>
+
+    <!-- VIP TAB -->
+    <div id="tab-vip" class="tab-content">
+        <div class="stats">
+            <div class="card">
+                <h3 id="vip-count">0</h3>
+                <p>สมาชิก VIP</p>
+            </div>
+            <div class="card">
+                <h3 id="expired-count">0</h3>
+                <p>หมดอายุ</p>
+            </div>
+            <div class="card">
+                <h3 id="history-count">0</h3>
+                <p>ประวัติ</p>
+            </div>
+        </div>
+        <div id="vip-list" class="vip-grid"></div>
+    </div>
+
+    <!-- HISTORY TAB -->
+    <div id="tab-history" class="tab-content hidden">
+        <div id="history-list" class="vip-grid"></div>
+    </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
